@@ -2,6 +2,7 @@
 import { parseArgs } from 'node:util';
 import { renameSync, unlinkSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 import { getCommits, getLatestTag, getRepoUrl } from '../src/gitlog.js';
 import { parseConventionalCommit } from '../src/parser.js';
@@ -228,6 +229,12 @@ function main(): void {
   process.exitCode = result.exitCode;
 }
 
-if ((import.meta as { main?: boolean }).main) {
+// Portably detect whether this module is the direct CLI entry point. The
+// `import.meta.main` property is only available on newer Node (>=22); the
+// path comparison works on every supported Node version including 20.
+if (
+  process.argv[1] !== undefined &&
+  import.meta.url === pathToFileURL(process.argv[1]).href
+) {
   main();
 }
