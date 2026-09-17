@@ -1,4 +1,5 @@
-export { parseConventionalCommit, parseMessage } from './parser.js';
+export * from './parser.js';
+export * from './types.js';
 export { computeBump, bumpVersion } from './semver.js';
 export {
   getCommits,
@@ -8,10 +9,3 @@ export {
   GitError,
 } from './gitlog.js';
 export { renderChangelog } from './render.js';
-export type {
-  CommitType,
-  ParsedCommit,
-  RawCommit,
-  SemverBump,
-  RenderOptions,
-} from './types.js';
