@@ -1,0 +1,36 @@
+{
+  "name": "@jffjs-hermes/conventional-changelog",
+  "version": "0.1.0",
+  "description": "Generate changelogs from conventional commits.",
+  "type": "module",
+  "bin": {
+    "conventional-changelog": "dist/bin/cli.js"
+  },
+  "exports": "./dist/src/index.js",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc -p tsconfig.json",
+    "lint": "eslint .",
+    "test": "npm run build && node --test dist/test/**/*.test.js",
+    "start": "node dist/bin/cli.js"
+  },
+  "keywords": [
+    "conventional-commits",
+    "changelog",
+    "cli"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "22.20.3",
+    "eslint": "10.10.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.70.0"
+  }
+}
